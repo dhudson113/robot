@@ -97,8 +97,8 @@ public class Robot extends IterativeRobot {
 		boolean XButtonPressed = controller.getXButtonPressed();
 		if (XButtonPressed) {
 			double servoPosition = servo.get();
-			double newservoPosition = 
-			servo.set(value);
+			double newservoPosition = Math.abs(servoPosition - 1.0);
+			servo.set(newservoPosition);
 		}
 	}
 
