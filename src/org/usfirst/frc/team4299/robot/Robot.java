@@ -9,6 +9,7 @@ package org.usfirst.frc.team4299.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,7 +31,7 @@ public class Robot extends IterativeRobot {
 	Spark left = new Spark(0);
 	Spark right = new Spark(1);	
 			
-			
+	Servo servo = new Servo(1);
 			
 			
 			
@@ -70,19 +71,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		
-		XboxController controller = new XboxController(5);
-		double leftStickValue = controller.getY(Hand.kLeft);
-		double rightStickValue = controller.getY(Hand.kRight);
-		
-		
-		
-		
-		
-		left.setSpeed(leftStickValue);
-		right.setSpeed(rightStickValue);
-		
-		
 		switch (m_autoSelected) {
 			case kCustomAuto:
 				// Put custom auto code here
@@ -99,6 +87,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		XboxController controller = new XboxController(5);
+		double leftStickValue = controller.getY(Hand.kLeft);
+		double rightStickValue = controller.getY(Hand.kRight);
+		
+		left.setSpeed(leftStickValue);
+		right.setSpeed(rightStickValue);
+		
+		boolean XButtonPressed = controller.getXButtonPressed();
+		if (XButtonPressed) {
+			double servoPosition = servo.get();
+			double newservoPosition = 
+			servo.set(value);
+		}
 	}
 
 	/**
